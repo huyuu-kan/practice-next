@@ -19,6 +19,6 @@ jobs:
           npm install
 
       - name: Apply migrations
-        run: npm drizzle-kit:migrate
+        run: npm run drizzle:migrate
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
