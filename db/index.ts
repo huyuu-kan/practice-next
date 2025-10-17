@@ -18,7 +18,7 @@ const databaseUrl = process.env.DATABASE_URL;
 if (!databaseUrl) {
 	throw new Error('環境変数 DATABASE_URL が設定されていません。`.env` を確認してください。');
 }
-const client = postgres(databaseUrl);
+const client = postgres(databaseUrl,{prepare: false});
 
 // drizzle に postgres クライアントを渡して `db` を作成します。
 // この `db` を通じて型安全なクエリやスキーマ操作を行います。
