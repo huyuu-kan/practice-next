@@ -1,0 +1,24 @@
+name: マイグレーション
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  apply-migrations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install dependencies & tooling
+        run: |
+          npm install -g npm
+          npm install
+
+      - name: Apply migrations
+        run: npm drizzle-kit:migrate
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
